@@ -1,0 +1,33 @@
+_format_version: "3.0"
+
+services:
+  - name: product-service
+    url: https://dummyjson.com/products
+    routes:
+    - name: product-route
+      paths:
+        - /api/products
+      methods:
+        - "GET"
+        - "POST"
+        - "PUT"
+        - "DELETE"
+      strip_path: true
+      protocols:
+        - "http"
+        - "https"
+    plugins:
+      - name: rate-limiting
+        config:
+          minute: 5
+          policy: local
+          limit_by: ip
+          hide_client_headers: true
+          fault_tolerant: false
+
+plugins:
+  - name: correlation-id
+    config:
+      header_name: Request-ID
+      generator: uuid
+      echo_downstream: true
