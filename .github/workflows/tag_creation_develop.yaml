@@ -1,9 +1,9 @@
 name: push-image-develop
 
 on:
-  push:
-    branches:
-      - develop
+  create:
+    tags:
+      - "*"
 
 jobs:
   docker:
@@ -26,12 +26,14 @@ jobs:
 
       - name: Set variables
         id: vars
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+        run: |
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "tag_name=$(git describe --tags)" >> $GITHUB_OUTPUT
 
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: vitor96k/arithmetic-kong:${{ steps.vars.outputs.sha_short }}
+          tags: vitor96k/arithmetic-kong:${{ steps.vars.outputs.tag_name }}
           platforms: linux/amd64,linux/arm64

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: arithmetic-kong
-          image: "vitor96k/arithmetic-kong:719216e"
+          image: "vitor96k/arithmetic-kong:a5c5d48"
           resources:
             requests:
               cpu: 100m

@@ -1,19 +1,6 @@
 _format_version: "3.0"
 
 services:
-  - name: health-check-service
-    url: https://dummyjson.com/products
-    routes:
-    - name: product-route
-      paths:
-        - /api/health-check
-      methods:
-        - "GET"
-      strip_path: true
-      protocols:
-        - "http"
-        - "https"
-
   - name: arithmetic-service
     url: http://arithmetic-backend-cluster-ip-service:80
     routes:
