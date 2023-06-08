@@ -1,4 +1,4 @@
-FROM kong:3.3.0-alpine
+FROM kong:3.3.0
 
 
 COPY kong.yml /etc/kong/
