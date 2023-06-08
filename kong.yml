@@ -1,12 +1,25 @@
 _format_version: "3.0"
 
 services:
-  - name: product-service
+  - name: health-check-service
     url: https://dummyjson.com/products
     routes:
     - name: product-route
       paths:
-        - /api/products
+        - /api/health-check
+      methods:
+        - "GET"
+      strip_path: true
+      protocols:
+        - "http"
+        - "https"
+
+  - name: arithmetic-service
+    url: http://arithmetic-backend-cluster-ip-service:80
+    routes:
+    - name: arithmetic-route
+      paths:
+        - /api/arithmetic
       methods:
         - "GET"
         - "POST"
@@ -19,7 +32,7 @@ services:
     plugins:
       - name: rate-limiting
         config:
-          minute: 5
+          minute: 10
           policy: local
           limit_by: ip
           hide_client_headers: true

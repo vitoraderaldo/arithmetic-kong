@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: arithmetic-kong-service
+spec:
+  selector:
+    app: arithmetic-kong
+  type: LoadBalancer
+
+  ports:
+  - port: 80 # Service Port
+    targetPort: 8000 # Container Port
+    protocol: TCP
