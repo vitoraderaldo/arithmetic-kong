@@ -34,5 +34,13 @@ plugins:
 
   - name: request-size-limiting
     config:
-      allowed_payload_size: 1
+      allowed_payload_size: 5
       size_unit: "megabytes"
+
+  - name: oidc
+    config:
+      client_id: "nuqu1jq1cqdfjr3no9ajhq0s9"
+      client_secret: "not-necessary"
+      discovery: "https://cognito-idp.sa-east-1.amazonaws.com/sa-east-1_wf8YNqFIo/.well-known/openid-configuration"
+      unauth_action: "deny"
+      bearer_jwt_auth_enable: "yes"

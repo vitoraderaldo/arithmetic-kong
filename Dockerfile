@@ -1,10 +1,19 @@
 FROM kong:3.3.0
 
+ARG PLUGIN_OIDC_VERSION=1.3.1-1
 
 COPY kong.yml /etc/kong/
 
+USER root
+
+RUN luarocks install lua-resty-openidc
+RUN git clone -b v${PLUGIN_OIDC_VERSION} https://github.com/revomatico/kong-oidc.git
+RUN cd kong-oidc && cp kong-oidc.rockspec kong-oidc-${PLUGIN_OIDC_VERSION}.rockspec && luarocks make kong-oidc-${PLUGIN_OIDC_VERSION}.rockspec
+
 ENV KONG_DATABASE=off
 ENV KONG_DECLARATIVE_CONFIG=/etc/kong/kong.yml
+ENV KONG_PLUGINS="bundled, oidc"
+ENV KONG_LOG_LEVEL=debug
 
 EXPOSE 8000
 
