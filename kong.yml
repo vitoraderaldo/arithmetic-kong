@@ -31,3 +31,8 @@ plugins:
       header_name: Request-ID
       generator: uuid
       echo_downstream: true
+
+  - name: request-size-limiting
+    config:
+      allowed_payload_size: 1
+      size_unit: "megabytes"
