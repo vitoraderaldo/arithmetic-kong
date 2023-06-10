@@ -34,7 +34,7 @@ plugins:
 
   - name: rate-limiting
     config:
-      minute: 10
+      minute: 60
       policy: local
       limit_by: ip
       hide_client_headers: true
