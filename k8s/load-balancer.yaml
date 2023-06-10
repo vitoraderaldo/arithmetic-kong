@@ -5,7 +5,7 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:sa-east-1:833632403743:certificate/d66fd3f8-7dbf-4a1b-940c-4c7c8a729309"
     service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
-    external-dns.alpha.kubernetes.io/hostname: kong.arithmetic-services.click
+    external-dns.alpha.kubernetes.io/hostname: kong-staging.arithmetic-services.click
 spec:
   selector:
     app: arithmetic-kong
