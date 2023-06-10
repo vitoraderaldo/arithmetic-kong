@@ -7,23 +7,18 @@ services:
     - name: arithmetic-route
       paths:
         - /api/arithmetic
-      methods:
-        - "GET"
-        - "POST"
-        - "PUT"
-        - "DELETE"
       strip_path: true
       protocols:
         - "http"
-        - "https"
-    plugins:
-      - name: rate-limiting
-        config:
-          minute: 10
-          policy: local
-          limit_by: ip
-          hide_client_headers: true
-          fault_tolerant: false
+        - "https"      
+
+  - name: auth-service
+    url: http://arithmetic-backend-cluster-ip-service:80
+    routes:
+    - name: test-route
+      paths:
+        - /user/login
+      strip_path: false
 
 plugins:
   - name: correlation-id
@@ -37,6 +32,14 @@ plugins:
       allowed_payload_size: 5
       size_unit: "megabytes"
 
+  - name: rate-limiting
+    config:
+      minute: 10
+      policy: local
+      limit_by: ip
+      hide_client_headers: true
+      fault_tolerant: false
+
   - name: oidc
     config:
       client_id: "nuqu1jq1cqdfjr3no9ajhq0s9"
@@ -44,3 +47,4 @@ plugins:
       discovery: "https://cognito-idp.sa-east-1.amazonaws.com/sa-east-1_wf8YNqFIo/.well-known/openid-configuration"
       unauth_action: "deny"
       bearer_jwt_auth_enable: "yes"
+      ignore_auth_filters: "/user/login"
