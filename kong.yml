@@ -48,3 +48,8 @@ plugins:
       unauth_action: "deny"
       bearer_jwt_auth_enable: "yes"
       ignore_auth_filters: "/api/auth/login"
+
+  - name: cors
+    config:
+      origins:
+      - "*"
