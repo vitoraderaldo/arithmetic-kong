@@ -13,12 +13,12 @@ services:
         - "https"      
 
   - name: auth-service
-    url: http://arithmetic-backend-cluster-ip-service:80
+    url: http://arithmetic-backend-cluster-ip-service:80/user/login
     routes:
-    - name: test-route
+    - name: login-route
       paths:
-        - /user/login
-      strip_path: false
+        - /api/auth/login
+      strip_path: true
 
 plugins:
   - name: correlation-id
