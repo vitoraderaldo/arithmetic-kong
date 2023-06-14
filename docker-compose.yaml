@@ -6,8 +6,35 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "8000:8000"
+      - "8001"
     networks:
       - arithmetic
+    environment:
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
+      - KONG_PROXY_LISTEN=0.0.0.0:8000, 0.0.0.0:8443 ssl http2
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+      - KONG_REAL_IP_RECURSIVE=on
+      - KONG_NGINX_HTTP_RESOLVER=8.8.8.8
+    volumes:
+      - ../shared-volume/kong/log:/log
+
+  # konga:
+  #   image: pantsel/konga
+  #   platform: linux/amd64
+  #   networks:
+  #     - arithmetic
+  #   depends_on:
+  #     - kong
+  #   environment:
+  #     NODE_ENV: development
+  #   ports:
+  #     - "1337:1337"
+  #   healthcheck:
+  #     test: nc -zv localhost 1337 || exit 1
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 30
+  #     start_period: 10s
 
 networks:
   arithmetic:
