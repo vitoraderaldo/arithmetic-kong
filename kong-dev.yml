@@ -61,3 +61,7 @@ plugins:
     config:
       origins:
       - "*"
+
+  - name: file-log
+    config:
+      path: "/log/kong.log"
