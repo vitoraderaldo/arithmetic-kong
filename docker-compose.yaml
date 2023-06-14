@@ -3,6 +3,12 @@ services:
   kong:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - "8000:8000"
+    networks:
+      - arithmetic
+
+networks:
+  arithmetic:
+    external: true
