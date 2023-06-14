@@ -2,7 +2,7 @@ _format_version: "3.0"
 
 services:
   - name: arithmetic-service
-    url: http://arithmetic-backend-cluster-ip-service:80
+    url: http://arithmetic-calulator:7001
     routes:
     - name: arithmetic-route
       paths:
@@ -13,7 +13,7 @@ services:
         - "https"      
 
   - name: auth-service
-    url: http://arithmetic-backend-cluster-ip-service:80/user/login
+    url: http://arithmetic-calulator:7001/user/login
     routes:
     - name: login-route
       paths:
@@ -21,7 +21,7 @@ services:
       strip_path: true
 
   - name: apm
-    url: http://apm-server:8200
+    url: http://apm:8200
     routes:
       - name: apm-route
         paths:
