@@ -20,8 +20,9 @@ services:
         - /api/auth/login
       strip_path: true
 
+  ### Deprecated. The frontend will communicate directly with the APM Server
   - name: apm
-    url: http://apm-cluster-ip:8200
+    url: https://arithmetic-staging.apm.us-central1.gcp.cloud.es.io
     routes:
       - name: apm-route
         paths:
