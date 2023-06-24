@@ -28,6 +28,14 @@ services:
           - /api/apm/
         strip_path: true
 
+  - name: prometheus
+    url: http://localhost:8001/metrics
+    routes:
+      - name: prometheus-route
+        paths:
+          - /prometheus/metrics
+        strip_path: true
+
 plugins:
   - name: correlation-id
     config:
@@ -55,7 +63,7 @@ plugins:
       discovery: "https://cognito-idp.sa-east-1.amazonaws.com/sa-east-1_wf8YNqFIo/.well-known/openid-configuration"
       unauth_action: "deny"
       bearer_jwt_auth_enable: "yes"
-      ignore_auth_filters: "/api/auth/login,/api/apm/.*"
+      ignore_auth_filters: "/api/auth/login,/api/apm/.*,/prometheus/metrics"
 
   - name: cors
     config:
@@ -65,3 +73,11 @@ plugins:
   - name: file-log
     config:
       path: "/log/kong.log"
+
+  - name: prometheus
+    enabled: true
+    config:
+      per_consumer: false
+      status_code_metrics: true
+      latency_metrics: true
+      upstream_health_metrics: true
