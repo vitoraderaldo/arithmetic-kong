@@ -38,6 +38,12 @@ jobs:
           tags: vitor96k/arithmetic-kong:${{ steps.vars.outputs.tag_name }}
           platforms: linux/amd64,linux/arm64
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "action@hithub.com"
+          git config --global user.name "GitHub Action"
+          git checkout develop
+
       - name: 'Install Kustomize'
         uses: imranismail/setup-kustomize@v2
         with:
@@ -50,9 +56,6 @@ jobs:
 
       - name: 'Commit '
         run: |
-          git config --global user.email "action@hithub.com"
-          git config --global user.name "GitHub Action"
-          git checkout develop
           git add .
           git commit -m "Update image tag to ${{ steps.vars.outputs.tag_name }}"
 
