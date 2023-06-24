@@ -7,4 +7,4 @@ resources:
 ## To change the newName and newTag just run: kustomize edit set image vitor96k/arithmetic-kong:4.0.0
 images:
 - name: vitor96k/arithmetic-kong
-  newTag: 3.3.6
+  newTag: 3.3.7
