@@ -52,6 +52,7 @@ jobs:
         run: |
           git config --global user.email "action@hithub.com"
           git config --global user.name "GitHub Action"
+          git pull --tags
           git add .
           git commit -m "Update image tag to ${{ steps.vars.outputs.tag_name }}"
 
