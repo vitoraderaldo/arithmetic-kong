@@ -54,6 +54,11 @@ jobs:
           cd kong/k8s
           kustomize edit set image vitor96k/arithmetic-kong:${{ steps.vars.outputs.tag_name }}
 
+      - name: Configure Git User
+        run: |
+          git config --global user.email "action@hithub.com"
+          git config --global user.name "GitHub Action"
+
       - name: 'Commit '
         run: |
           git add .
