@@ -43,7 +43,7 @@ jobs:
         with:
           repository: vitoraderaldo/arithmetic-k8s
           ref: develop
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: 'Install Kustomize'
         uses: imranismail/setup-kustomize@v2
@@ -64,11 +64,10 @@ jobs:
         run: |
           git add .
           git commit -m "Update image tag to ${{ steps.vars.outputs.tag_name }}"
-          git push origin develop
 
-      # - name: Push kustomization.yaml
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: develop
-      #     repository: vitoraderaldo/arithmetic-k8s
+      - name: Push kustomization.yaml
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT_TOKEN }}
+          branch: develop
+          repository: vitoraderaldo/arithmetic-k8s
