@@ -41,7 +41,7 @@ jobs:
       - name: Checkout K8s Repository
         uses: actions/checkout@v3
         with:
-          repository: vitor96k/arithmetic-k8s
+          repository: vitoraderaldo/arithmetic-k8s
           ref: develop
 
       - name: 'Install Kustomize'
