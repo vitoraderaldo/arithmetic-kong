@@ -69,3 +69,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: develop
+          repository: vitoraderaldo/arithmetic-k8s
