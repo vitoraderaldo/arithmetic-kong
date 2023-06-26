@@ -43,7 +43,6 @@ jobs:
         with:
           repository: vitoraderaldo/arithmetic-k8s
           ref: develop
-          token: ${{ secrets.PAT_TOKEN }}
 
       - name: 'Install Kustomize'
         uses: imranismail/setup-kustomize@v2
@@ -68,6 +67,6 @@ jobs:
       - name: Push kustomization.yaml
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.PAT_TOKEN }}
+          github_token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
           branch: develop
           repository: vitoraderaldo/arithmetic-k8s
