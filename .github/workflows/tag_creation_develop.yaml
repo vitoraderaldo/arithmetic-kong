@@ -57,7 +57,7 @@ jobs:
       - name: Configure Git User
         run: |
           git config --global user.email "action@hithub.com"
-          git config --global user.name "GitHub Actions"
+          git config --global user.name "GitHub Action"
 
       - name: 'Commit '
         run: |
@@ -65,11 +65,8 @@ jobs:
           git commit -m "Update image tag to ${{ steps.vars.outputs.tag_name }}"
 
       - name: Push kustomization.yaml
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+        uses: ad-m/github-push-action@master
         with:
-          destination-github-username: vitoraderaldo
-          destination-repository-name: arithmetic-k8s
-          user-email: action@hithub.com
-          target-branch: develop
+          github_token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+          branch: develop
+          repository: vitoraderaldo/arithmetic-k8s
