@@ -65,8 +65,11 @@ jobs:
           git commit -m "Update image tag to ${{ steps.vars.outputs.tag_name }}"
 
       - name: Push kustomization.yaml
-        uses: ad-m/github-push-action@master
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
-          github_token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
-          branch: develop
-          repository: vitoraderaldo/arithmetic-k8s
+          destination-github-username: vitoraderaldo
+          destination-repository-name: arithmetic-k8s
+          user-email: action@hithub.com
+          target-branch: develop
