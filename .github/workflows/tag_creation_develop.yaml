@@ -69,7 +69,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
         with:
-          destination-github-username: 'GitHub Actions'
-          destination-repository-name: vitoraderaldo/arithmetic-k8s
+          destination-github-username: vitoraderaldo
+          destination-repository-name: arithmetic-k8s
           user-email: action@hithub.com
           target-branch: develop
